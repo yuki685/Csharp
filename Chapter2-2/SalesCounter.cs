@@ -30,5 +30,24 @@ public class SalesCounter
         }
         return dict;
     }
+    // Code 2-15
+    // 売り上げデータを読み込み、Saleオブジェクトのリストを返す
+    private static List<Sale> ReadSales(string filePath)
+    {
+        List<Sale> sales = new List<Sale>();
+        string[] lines = File.ReadAllLines(filePath);
+        foreach (string line in lines)
+        {
+            string[] items = line.Split(',');
+            Sale sale = new Sale
+            {    //- オブジェクト初期化子を使ってプロパティを初期化
+                ShopName = items[0],
+                ProductCategory = items[1],
+                Amount = int.Parse(items[2])
+            };
+            sales.Add(sale);
+        }
+        return sales;
+    }
 }
 
